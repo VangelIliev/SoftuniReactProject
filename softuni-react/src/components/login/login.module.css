@@ -1,8 +1,8 @@
-h1{
-    color: rgb(89, 202, 236);
+.headerLogin{
+    color: white;
 }
 .formWrapper{
-    background-color: #d8d4d4;
+    background-color: #a83232;
     width: 32%;
     height: 235px;
     margin-left: auto;
@@ -20,6 +20,7 @@ h1{
 }
 .formLabel{
     margin-left: 5px;
+    color: white;
 }
 .formInput{
     margin-left: 5px;
@@ -31,7 +32,7 @@ h1{
 .buttonRegister{
     width: 50%;
     height: 30px;
-    background-color: rgb(89, 202, 236);
+    background-color: rgb(59, 182, 135);
     color: white;
     margin-top: 5px;
     border: 1px white;

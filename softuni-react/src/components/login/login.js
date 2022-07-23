@@ -13,7 +13,7 @@ function LogIn() {
     return (
         <div className={styles.formWrapper}>
         <form>
-            <h1>Log In form</h1>
+            <h1 className={styles.headerLogin}>Log In form</h1>
             <div className={styles.form}>
             <div className={styles.formFieldWrapper}>
                 <div>

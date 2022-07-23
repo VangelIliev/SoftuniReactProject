@@ -3,13 +3,18 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #a83232;
   }
-  
+  .userNav{
+    float:right;
+  }
   .item {
     float: left;
   }
-  
+  .userNav:hover{
+    background-color: rgb(59, 182, 135);
+    cursor: pointer;
+  }
   .link {
     display: block;
     color: white;
@@ -17,7 +22,8 @@
     padding: 14px 16px;
     text-decoration: none;
   }
-  
-  .link :hover {
-    background-color: #111;
+  .item:hover{
+    background-color: rgb(59, 182, 135);
+    cursor: pointer;
   }
+  

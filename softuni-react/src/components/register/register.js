@@ -25,7 +25,7 @@ function Register(){
     return (
         <div className={styles.formWrapper}>
         <form>
-            <h1>Registration form</h1>
+            <h1 className={styles.headerRegister}>Registration form</h1>
             <div className={styles.form}>
             <div className={styles.formFieldWrapper}>
                     <div>
