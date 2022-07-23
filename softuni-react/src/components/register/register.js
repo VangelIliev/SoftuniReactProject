@@ -1,44 +1,35 @@
 import {useState} from 'react';
 import styles from './register.module.css';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebaseConfig.js';
 
 function Register(){
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const firstNameChangeHandler = (e) => {
-        setFirstName(e.target.value);
-    }
-    const lastNameChangeHandler = (e) => {
-        setLastName(e.target.value);
-    }
+
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
     }
     const passwordChangeHandler = (e) => {
         setPassword(e.target.value);
     }
-    const confirmPasswordChangeHandler = (e) => {
-        setConfirmPassword(e.target.value);
+
+    const register = async () => {
+        try{
+            await createUserWithEmailAndPassword(auth, email, password);
+            setEmail('');
+            setPassword('');
+        }
+        catch(error){
+            alert(error.message);
+        }
     }
+
     return (
         <div className={styles.formWrapper}>
         <form>
             <h1 className={styles.headerRegister}>Registration form</h1>
             <div className={styles.form}>
-            <div className={styles.formFieldWrapper}>
-                    <div>
-                    <label className={styles.formLabel} htmlFor='firstName'>FirstName:</label>
-                    </div>
-                    <input className={styles.formInput} type="text" value={firstName} onChange={firstNameChangeHandler}></input>
-                </div>
-                <div className={styles.formFieldWrapper}>
-                    <div>
-                    <label className={styles.formLabel} htmlFor='lastName'>LastName:</label>
-                    </div>
-                    <input className={styles.formInput} type="text" value={lastName} onChange={lastNameChangeHandler}></input>
-                </div>
             <div className={styles.formFieldWrapper}>
                 <div>
                 <label className={styles.formLabel} htmlFor='email'>Email Address:</label>
@@ -51,15 +42,9 @@ function Register(){
                 </div>
                 <input className={styles.formInput} type="password" value={password} onChange={passwordChangeHandler}></input>
             </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='Confirmpassword'>Confirm Password:</label>
-                </div>
-                <input className={styles.formInput} type="password" value={confirmPassword} onChange={confirmPasswordChangeHandler}></input>
-            </div>
             </div>
             <div>
-                <button className={styles.buttonRegister} type='button'>Register</button>
+                <button onClick={register} className={styles.buttonRegister} type='button'>Register</button>
             </div>
         </form>
         </div>
