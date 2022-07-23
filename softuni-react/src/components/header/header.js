@@ -1,13 +1,13 @@
-import styles from './Header.module.css'
+import styles from './header.module.css';
 function Header() {
     return (
-        <nav class="bg-dark navbar-dark navbar">
+        <nav className="bg-dark navbar-dark navbar">
             <div className="row col-12 d-flex justify-content-center text-white">
-                <ul className="navigation-top">
-                    <li><a class="active" href="#home">Home</a></li>
-                    <li><a href="#news">Recipes</a></li>
-                    <li><a href="#contact">My Recipes</a></li>
-                    <li><a href="#about">About</a></li>
+                <ul className={styles.navigation}>
+                    <li className={styles.item}><a className={styles.link} href="#home">Home</a></li>
+                    <li className={styles.item}><a className={styles.link}>Recipes</a></li>
+                    <li className={styles.item}><a className={styles.link}>My Recipes</a></li>
+                    <li className={styles.item}><a className={styles.link}>About</a></li>
                 </ul>
             </div>
         </nav>
