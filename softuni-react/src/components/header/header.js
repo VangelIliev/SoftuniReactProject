@@ -14,7 +14,7 @@ function Header(props) {
                     <li className={styles.item}><a className={styles.link} href="MyRecipes">My Recipes</a></li>
                     <li className={styles.item}><a className={styles.link} href="AddRecipe">Add Recipe</a></li>
                     <li className={styles.item}><a className={styles.link} href="About">About</a></li>
-                    <button className={styles.userNav} onClick={logout}>Log Out</button>             
+                    <button className={styles.userNavButton} onClick={logout}>Log Out</button>             
                     <li className={styles.userNav}><a className={styles.link} href="Register">Register</a></li>
                     <li className={styles.userNav}><a className={styles.link} href="Login">Login</a></li>
                     <li className={styles.userNav}><a className={styles.link} href="Login">{props.user.email}</a></li>                       

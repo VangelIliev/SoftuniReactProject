@@ -5,7 +5,7 @@
     overflow: hidden;
     background-color: #a83232;
   }
-  .userNav{
+  .userNav, .userNavButton{
     float:right;
   }
   .item {
@@ -23,6 +23,19 @@
     text-decoration: none;
   }
   .item:hover{
+    background-color: rgb(59, 182, 135);
+    cursor: pointer;
+  }
+  .userNavButton{
+    display: block;
+    padding: 18px 16px;
+    text-decoration: none;
+    text-align: center;
+    background-color: #a83232;
+    color: white;
+    border: none;
+  }
+  .userNavButton:hover{
     background-color: rgb(59, 182, 135);
     cursor: pointer;
   }
