@@ -8,6 +8,9 @@ function Header() {
                     <li className={styles.item}><a className={styles.link}>Recipes</a></li>
                     <li className={styles.item}><a className={styles.link}>My Recipes</a></li>
                     <li className={styles.item}><a className={styles.link}>About</a></li>
+                    <li className={styles.item}><a className={styles.link}>Login</a></li>
+                    <li className={styles.item}><a className={styles.link}>LogOut</a></li>
+                    <li className={styles.item}><a className={styles.link}>Register</a></li>
                 </ul>
             </div>
         </nav>
