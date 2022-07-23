@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './login.module.css';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig.js';
+import { useNavigate } from "react-router-dom";
 function LogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,13 +13,16 @@ function LogIn() {
     const passwordChangeHandler = (e) => {
         setPassword(e.target.value);
     }
+
+    let navigate = useNavigate();
+    
     const login = async () => {
 
         try{
-            const user = await signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);           
             setEmail('');
-            setPassword('');
-            console.log(user);
+            setPassword(''); 
+            navigate("/home", { replace: true });
         }
         catch(error){
             alert(error.message);
