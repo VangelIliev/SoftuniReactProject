@@ -7,7 +7,7 @@ function AddRecipe(props){
     const [recipeName, setRecipeName] = useState('');
     const [timeToPrepare, setTimeToPrepare] = useState('');
     const [description, setRecipeDescription] = useState('');
-
+    const [category, setCategory] = useState('select');
     function recipeChangeHandler(e){
         setRecipeName(e.target.value);
     }
@@ -17,9 +17,19 @@ function AddRecipe(props){
     function descriptionChangeHandler(e){
         setRecipeDescription(e.target.value);
     }
-
+    function setCategoryHandler(e){
+        setCategory(e.target.value);
+    }
     function addRecipe(){
-        console.log(recipeName + ' ' + timeToPrepare + ' ' + description );
+        console.log(recipeName + ' ' + timeToPrepare + ' ' + description + ' ' + category );
+        clearForm();
+
+    }
+    function clearForm(){
+        setCategory('');
+        setRecipeName('');
+        setTimeToPrepare('');
+        setRecipeDescription('');
     }
     return (
         <div className={styles.formWrapper}>
@@ -32,6 +42,18 @@ function AddRecipe(props){
                 </div>
                 <input className={styles.formInput} type="text" value={recipeName} onChange={recipeChangeHandler}></input>
             </div>
+            <div className={styles.formFieldWrapper}>
+                <div>
+                <label className={styles.formLabel} htmlFor='category'>Category:</label>
+                </div>
+               <select  onChange={setCategoryHandler} value={category}>
+                  <option value="select">Select</option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Dessert">Dessert</option>
+               </select>
+           </div>
             <div className={styles.formFieldWrapper}>
                 <div>
                 <label className={styles.formLabel} htmlFor='timeToPrepare'>Preparation Time:</label>
