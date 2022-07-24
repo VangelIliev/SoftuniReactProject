@@ -1,0 +1,55 @@
+import styles from './addRecipe.module.css';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+function AddRecipe(props){
+    // const userEmail = props.email;
+    const [recipeName, setRecipeName] = useState('');
+    const [timeToPrepare, setTimeToPrepare] = useState('');
+    const [description, setRecipeDescription] = useState('');
+
+    function recipeChangeHandler(e){
+        setRecipeName(e.target.value);
+    }
+    function timeChangeHandler(e){
+        setTimeToPrepare(e.target.value);
+    }
+    function descriptionChangeHandler(e){
+        setRecipeDescription(e.target.value);
+    }
+
+    function addRecipe(){
+        console.log(recipeName + ' ' + timeToPrepare + ' ' + description );
+    }
+    return (
+        <div className={styles.formWrapper}>
+        <form>
+            <h1 className={styles.headerAddRecipe}>Add a Recipe</h1>
+            <div className={styles.form}>
+            <div className={styles.formFieldWrapper}>
+                <div>
+                <label className={styles.formLabel} htmlFor='recipeName'>RecipeName:</label>
+                </div>
+                <input className={styles.formInput} type="text" value={recipeName} onChange={recipeChangeHandler}></input>
+            </div>
+            <div className={styles.formFieldWrapper}>
+                <div>
+                <label className={styles.formLabel} htmlFor='timeToPrepare'>Preparation Time:</label>
+                </div>
+                <input className={styles.formInput} type="number" value={timeToPrepare} onChange={timeChangeHandler}></input>
+            </div>
+            <div className={styles.formFieldWrapper}>
+                <div>
+                <label className={styles.formLabel} htmlFor='description'>Description:</label>
+                </div>
+                <textarea className={styles.formInput} type="text" value={description} onChange={descriptionChangeHandler}></textarea>
+            </div>
+            </div>
+            <div>
+                <button onClick={addRecipe} className={styles.buttonRegister} type='button'>Add</button>
+            </div>
+        </form>
+        </div>
+    )
+}
+export default AddRecipe;

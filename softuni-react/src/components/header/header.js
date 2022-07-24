@@ -16,7 +16,7 @@ function Header(props) {
                     <li className={styles.item}><a className={styles.link} href="AddRecipe">Add Recipe</a></li>
                     <li className={styles.item}><a className={styles.link} href="About">About</a></li>
                     <button className={styles.userNavButton} onClick={logout}>Log Out</button>             
-                    <button className={styles.userNavButton}>{props.user}</button>                        
+                    <button className={styles.userNavButton}>Welcome {props.user}</button>                        
                 </ul>
             </div>
         </nav>

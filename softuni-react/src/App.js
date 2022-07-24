@@ -1,6 +1,7 @@
 import Header from './components/header/header'
 import Register from './components/register/register'
 import LogIn from './components/login/login';
+import AddRecipe from './components/recipe/addRecipe';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { onAuthStateChanged} from "firebase/auth";
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path='Register' element={<Register />} />
           <Route path='Login' element={<LogIn />} />
+          <Route path="AddRecipe" element={<AddRecipe />} />
         </Routes>
     </div>
   );
