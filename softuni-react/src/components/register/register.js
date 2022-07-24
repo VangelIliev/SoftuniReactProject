@@ -2,7 +2,7 @@ import {useState} from 'react';
 import styles from './register.module.css';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig.js';
-
+import { useNavigate } from "react-router-dom";
 function Register(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,11 +14,14 @@ function Register(){
         setPassword(e.target.value);
     }
 
+    let navigate = useNavigate();
+
     const register = async () => {
         try{
             await createUserWithEmailAndPassword(auth, email, password);
             setEmail('');
             setPassword('');
+            navigate("/home", { replace: true });
         }
         catch(error){
             alert(error.message);

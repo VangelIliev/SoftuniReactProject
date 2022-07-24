@@ -12,12 +12,12 @@ function App() {
   const [user, setUser] = useState({});
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-    console.log(user);
+    console.log(user.email);
   })
 
   return (
     <div className="App">
-        <Header user={user != null}/>
+        <Header user={user?.email}/>
         <Routes>
           <Route path='Register' element={<Register />} />
           <Route path='Login' element={<LogIn />} />
