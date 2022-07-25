@@ -1,7 +1,8 @@
 import styles from './addRecipe.module.css';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from '../firebaseConfig';
 function AddRecipe(props){
     // const userEmail = props.email;
     const [recipeName, setRecipeName] = useState('');
@@ -20,9 +21,19 @@ function AddRecipe(props){
     function setCategoryHandler(e){
         setCategory(e.target.value);
     }
-    function addRecipe(){
-        console.log(recipeName + ' ' + timeToPrepare + ' ' + description + ' ' + category );
-        clearForm();
+    async function addRecipe(){
+        try {
+            const docRef = await addDoc(collection(db, "recipes"), {
+                recipeName:recipeName,
+                timeToPrepare:timeToPrepare,
+                description:description,
+                category:category
+            });
+            console.log("Document written with ID: ", docRef.id);
+            clearForm();
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }    
 
     }
     function clearForm(){
