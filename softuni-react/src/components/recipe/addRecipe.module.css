@@ -4,9 +4,15 @@
 .formWrapper{
     background-color: #a83232;
     width: 32%;
-    height: 335px;
+    height: 355px;
     margin-left: auto;
     margin-right: auto;
+}
+.select{
+    padding: 4px;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 200px;
 }
 .formFieldWrapper{
     padding: 5px;

@@ -46,7 +46,7 @@ function AddRecipe(props){
                 <div>
                 <label className={styles.formLabel} htmlFor='category'>Category:</label>
                 </div>
-               <select  onChange={setCategoryHandler} value={category}>
+               <select className={styles.select}  onChange={setCategoryHandler} value={category}>
                   <option value="select">Select</option>
                   <option value="Breakfast">Breakfast</option>
                   <option value="Lunch">Lunch</option>
