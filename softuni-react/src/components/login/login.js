@@ -14,7 +14,7 @@ function LogIn() {
         setPassword(e.target.value);
     }
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     
     const login = async () => {
 

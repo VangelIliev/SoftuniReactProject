@@ -9,6 +9,9 @@ function AddRecipe(props){
     const [timeToPrepare, setTimeToPrepare] = useState('');
     const [description, setRecipeDescription] = useState('');
     const [category, setCategory] = useState('select');
+
+    const navigate = useNavigate();
+
     function recipeChangeHandler(e){
         setRecipeName(e.target.value);
     }
@@ -29,8 +32,8 @@ function AddRecipe(props){
                 description:description,
                 category:category
             });
-            console.log("Document written with ID: ", docRef.id);
-            clearForm();
+            navigate("/MyRecipes", { replace: true });
+            clearForm();            
           } catch (e) {
             console.error("Error adding document: ", e);
           }    
