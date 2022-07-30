@@ -1,7 +1,7 @@
 import Header from './components/header/header'
 import Register from './components/register/register'
 import LogIn from './components/login/login';
-import AddRecipe from './components/recipe/addRecipe';
+import AddRecipe from './components/addRecipe/addRecipe';
 import Recipes from  './components/recipes/recipes';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
@@ -23,7 +23,7 @@ function App() {
           <Route path='Register' element={<Register />} />
           <Route path='Login' element={<LogIn />} />
           <Route path="AddRecipe" element={<AddRecipe />} />
-          <Route path="MyRecipes" element={<Recipes />} />
+          <Route path="Recipes" element={<Recipes />} />
         </Routes>
     </div>
   );

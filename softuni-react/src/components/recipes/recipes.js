@@ -4,29 +4,23 @@ import { db } from '../firebaseConfig';
 function Recipes(){
 
     const[result, setResult] = useState([]);
-
     async function getRecipes(){
         const dbQery = query(collection(db, "recipes"));
         const querySnapshot = await getDocs(dbQery);
         const recipesArray = [];
-        setResult(result => [...result, querySnapshot]);
         querySnapshot.forEach((doc) => {
             const data = doc.data();
-            console.log(data);       
+            recipesArray.push(data); 
+            console.log(data);      
         })
-        console.log(recipesArray);
+        setResult(recipesArray);
     }
-    
-    useEffect(() => {
-        getRecipes();
-        console.log(result);
-        
-    },[])
+    useEffect(() => {       
+       getRecipes();      
+    },[]) 
 
     return(
-        <div>
-            <ul></ul>
-        </div>
+        <div>{result[0]?.category}</div>
     )
 }
 export default Recipes;
