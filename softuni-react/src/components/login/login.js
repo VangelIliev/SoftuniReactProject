@@ -3,6 +3,7 @@ import styles from './login.module.css';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig.js';
 import { useNavigate } from "react-router-dom";
+import { validateEmail, validatePassword} from '../validations/formValidation';
 function LogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,37 +17,15 @@ function LogIn() {
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
     }
-    const isEmailCorrect = (email) => {
-        return String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-      };
-    const validateEmail = (e) =>{
+    const validateEmailField = (e) =>{
         var email = e.target.value;
-        const isValidEmail = isEmailCorrect(email);
-        if(email === ''){
-            setEmailError('Email cannot be empty');
-        }
-        else if(!isValidEmail){
-            setEmailError("Please enter a valid email")
-        }
-        else{
-            setEmailError('');
-        }
+        const emailMessage = validateEmail(email);
+        setEmailError(emailMessage);
     }
-    const validatePassword = (e) => {
+    const validatePasswordField = (e) => {
         var password = e.target.value;
-        if(password === ''){
-            setPasswordError('Password cannot be empty');
-        }
-        else if(password.length < 6){
-            setPasswordError('Password should be attleast 6 symbols');
-        }
-        else{
-            setPasswordError('');
-        }
+        const passwordMessage = validatePassword(password);
+        setPasswordError(passwordMessage);
     }
     const submitForm = async (event) => {
         event.preventDefault();
@@ -78,14 +57,14 @@ function LogIn() {
                 <div>
                 <label className={styles.formLabel} htmlFor='email'>Email Address:</label>
                 </div>
-                <input className={styles.formInput} type="email" value={email} onChange={emailChangeHandler} onBlur={validateEmail}></input>
+                <input className={styles.formInput} type="email" value={email} onChange={emailChangeHandler} onBlur={validateEmailField}></input>
                 <span className={styles.inputValidation}>{emailError}</span>
             </div>
             <div className={styles.formFieldWrapper}>
                 <div>
                 <label className={styles.formLabel} htmlFor='password'>Password:</label>
                 </div>
-                <input className={styles.formInput} type="password" value={password} onChange={passwordChangeHandler} onBlur={validatePassword}></input>
+                <input className={styles.formInput} type="password" value={password} onChange={passwordChangeHandler} onBlur={validatePasswordField}></input>
                 <span className={styles.inputValidation}>{passwordError}</span>
             </div>
             </div>
