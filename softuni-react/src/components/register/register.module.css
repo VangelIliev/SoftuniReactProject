@@ -41,3 +41,7 @@
     cursor: pointer;
     background-color: rgb(59, 182, 135);
 }
+.inputValidation{
+    color:white;
+    margin-left: 5px;
+}

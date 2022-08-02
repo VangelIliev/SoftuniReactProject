@@ -11,7 +11,6 @@ function Header(props) {
             <nav className="bg-dark navbar-dark navbar">
             <div className="row col-12 d-flex justify-content-center text-white">
                 <ul className={styles.navigation}>
-                    <li className={styles.item}><Link className={styles.link} to="/Home">Home</Link></li>
                     <li className={styles.item}><Link className={styles.link} to="/Recipes">Recipes</Link></li>
                     <li className={styles.item}><Link className={styles.link} to="/MyRecipes">My Recipes</Link></li>
                     <li className={styles.item}><Link className={styles.link} to="/AddRecipe">Add Recipe</Link></li>
@@ -28,7 +27,6 @@ function Header(props) {
             <nav className="bg-dark navbar-dark navbar">
                 <div className="row col-12 d-flex justify-content-center text-white">
                     <ul className={styles.navigation}>
-                        <li className={styles.item}><Link className={styles.link} to="/Home">Home</Link></li>
                         <li className={styles.item}><Link className={styles.link} to="/Recipes">Recipes</Link></li>
                         <li className={styles.item}><Link className={styles.link} to="/About">About</Link></li>      
                         <li className={styles.userNav}><Link className={styles.link} to="Register">Register</Link></li>

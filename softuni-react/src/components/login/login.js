@@ -41,7 +41,7 @@ function LogIn() {
                 await signInWithEmailAndPassword(auth, email, password);           
                 setEmail('');
                 setPassword(''); 
-                navigate("/home", { replace: true });
+                navigate("/Recipes", { replace: true });
             }
             catch(error){
                 alert(error.message);
