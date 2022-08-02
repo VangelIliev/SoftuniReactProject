@@ -26,7 +26,7 @@ function AddRecipe(props){
     }
     async function addRecipe(){
         try {
-            const docRef = await addDoc(collection(db, "recipes"), {
+            await addDoc(collection(db, "recipes"), {
                 recipeName:recipeName,
                 timeToPrepare:timeToPrepare,
                 description:description,
