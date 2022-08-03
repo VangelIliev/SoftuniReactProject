@@ -1,12 +1,15 @@
 import styles from './Header.module.css';
 import { signOut } from "firebase/auth";
 import { auth } from '../firebaseConfig.js';
-import { Link} from 'react-router-dom';
-function Header(props) {
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from "../contexts/UserContext";
+function Header() {
+    const user = useContext(AuthContext);
     const logout = async () => {
         await signOut(auth);
       }
-    if(props.user){
+    if(user){
         return (
             <nav className="bg-dark navbar-dark navbar">
             <div className="row col-12 d-flex justify-content-center text-white">
@@ -16,7 +19,7 @@ function Header(props) {
                     <li className={styles.item}><Link className={styles.link} to="/AddRecipe">Add Recipe</Link></li>
                     <li className={styles.item}><Link className={styles.link} to="/About">About</Link></li>
                     <button className={styles.userNavButton} onClick={logout}>Log Out</button>             
-                    <button className={styles.userNavButton}>Welcome {props.user}</button>                        
+                    <button className={styles.userNavButton}>Welcome {user}</button>                        
                 </ul>
             </div>
         </nav>
