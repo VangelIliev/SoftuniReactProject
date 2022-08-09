@@ -1,9 +1,11 @@
 import styles from './addRecipe.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from '../firebaseConfig';
+import { useContext } from 'react';
 import { async } from '@firebase/util';
+import { AuthContext } from "../contexts/UserContext";
 function AddRecipe(props){
     // const userEmail = props.email;
     const [recipeName, setRecipeName] = useState('');
@@ -11,10 +13,10 @@ function AddRecipe(props){
     const [timeToPrepare, setTimeToPrepare] = useState('');
     const [description, setRecipeDescription] = useState('');
     const [category, setCategory] = useState('select');
-    const [user, setUser] = useState('');
+    const [currentUser, setUser] = useState('');
 
     const navigate = useNavigate();
-
+    const applicationUser = useContext(AuthContext);
     function recipeChangeHandler(e){
         setRecipeName(e.target.value);
     }
@@ -30,10 +32,15 @@ function AddRecipe(props){
     function setRecipeImageHandler(e){
         setRecipeImage(e.target.value);
     }
+    useEffect(() => {
+        setUser(applicationUser);
+    },[applicationUser])
+    
     const submitFormHandler = async (event) => {
         event.preventDefault();
         try {
             await addDoc(collection(db, "recipes"), {
+                user:currentUser,
                 recipeName:recipeName,
                 timeToPrepare:timeToPrepare,
                 description:description,
