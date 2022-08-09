@@ -1,20 +1,22 @@
-function Recipe(props){
+function Recipe(props) {
     return (
-        <div>
-            <h2>{props.title}</h2>
-            <div className="imageContainer">
-                <image src={props.recipeName}></image>
-            </div>
+        <li>
             <div>
-                <div>
-                    {props.category}
+                <h2>{props.title}</h2>
+                <div className="imageContainer">
+                    <image src={props.recipeName}></image>
                 </div>
                 <div>
-                    {props.timeToPrepare}
+                    <div>
+                        {props.category}
+                    </div>
+                    <div>
+                        {props.timeToPrepare}
+                    </div>
+                    <div>{props.description}</div>
                 </div>
-                <div>{props.description}</div>
             </div>
-        </div>
+        </li>
     )
 }
 

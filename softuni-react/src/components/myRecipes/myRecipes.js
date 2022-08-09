@@ -1,12 +1,15 @@
 import {useState, useEffect} from 'react';
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query,where, getDocs } from "firebase/firestore";
 import { db } from '../firebaseConfig';
+import { AuthContext } from "../contexts/UserContext";
+import { useContext } from 'react';
 function MyRecipes(){
 
-    const[result, setResult] = useState([]);
-
+    const[recipes, setResult] = useState([]);   
+    const applicationUser = useContext(AuthContext);
+    
     async function getRecipes(){
-        const dbQery = query(collection(db, "recipes"));
+        const dbQery = query(collection(db, "recipes"), where("user", "==", applicationUser));
         const querySnapshot = await getDocs(dbQery);
         const recipesArray = [];
         querySnapshot.forEach((doc) => {
@@ -16,12 +19,12 @@ function MyRecipes(){
         })
         setResult(recipesArray);
     }
-    useEffect(() => {       
+    useEffect(() => {
        getRecipes();      
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]) 
-
     return(
-        <div>{result[0]?.category}</div>
+        <div>{recipes[0]?.category}</div>
     )
 }
 export default MyRecipes;
