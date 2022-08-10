@@ -117,7 +117,8 @@ a {
 }
 .contentFooter {
   text-align: center;
-  margin: 0 3rem;
+  position:relative;
+  bottom: 10px;
 }
 .anker {
   font-family: var(--headlinesFont);

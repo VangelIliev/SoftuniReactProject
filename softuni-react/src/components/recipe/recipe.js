@@ -1,7 +1,8 @@
 import styles from './Recipe.module.css';
+import { Link } from 'react-router-dom';
 function Recipe(props) {
     var currentRecipe = props.currentRecipe;
-    console.log(currentRecipe);
+    var navigationLink = '/RecipeDetails/' + currentRecipe.recipeId;
     return (
         <li className={styles.card}>
             <div className={styles.ftrecipe}>
@@ -23,7 +24,7 @@ function Recipe(props) {
                     </header>
                     <p className={styles.description}>
                         {currentRecipe.description}</p>
-                    <footer className={styles.contentFooter}><a className={styles.anker} href="">View Recipe </a> </footer>
+                    <footer className={styles.contentFooter}><Link className={styles.anker} to={navigationLink}>View Recipe </Link> </footer>
                 </div>
             </div>
         </li>
