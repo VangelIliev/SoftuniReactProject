@@ -26,7 +26,6 @@ function Header() {
                     <li className={styles.item}><Link className={styles.link} to="/Recipes">Recipes</Link></li>
                     <li className={styles.item}><Link className={styles.link} to="/MyRecipes">My Recipes</Link></li>
                     <li className={styles.item}><Link className={styles.link} to="/AddRecipe">Add Recipe</Link></li>
-                    <li className={styles.item}><Link className={styles.link} to="/About">About</Link></li>
                     <button className={styles.userNavButton} onClick={logout}>Log Out</button>             
                     <button className={styles.userNavButton}>Welcome  {currentUser}</button>                        
                 </ul>

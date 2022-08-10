@@ -15,8 +15,7 @@ function MyRecipes(){
         const recipesArray = [];
         querySnapshot.forEach((doc) => {
             const data = doc.data();
-            recipesArray.push(data); 
-            console.log(data);      
+            recipesArray.push(data);   
         })
         setResult(recipesArray);
     }
