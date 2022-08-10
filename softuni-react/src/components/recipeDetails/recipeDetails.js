@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { doc,getDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
+import styles from './RecipeDetails.module.css';
 function RecipeDetails(){
     const [recipe, setRecipe] = useState({});
     const params = useParams();
@@ -25,7 +26,22 @@ function RecipeDetails(){
         getRecipe(recipeId);    
     },[recipeId])
     return(
-        <div>This is the recipe details page {recipe.recipeName}</div>
+        <div className={styles.container}>
+            <div className={styles.card}>
+                <div className={styles.image}>
+                    <img alt={recipe.recipeName} src={recipe.recipeImage} />
+                </div>
+                <div className={styles.content}>
+                    <h4>{recipe.recipeName}</h4>
+                    <p>Category: <strong>{recipe.category}</strong></p>
+                    <p>Servings: <strong>{recipe.servings}</strong></p>
+                    <p>Preparation Time: <strong>{recipe.timeToPrepare} minutes</strong></p>
+                    <p>Description: <strong>{recipe.description}</strong></p>
+                    <button className={styles.buttonRed}>Delete</button>
+                    <button className={styles.buttonBlue}>Edit</button>
+                </div>
+            </div>
+        </div>
     )
 }
 
