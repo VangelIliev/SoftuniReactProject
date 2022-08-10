@@ -2,7 +2,7 @@ import styles from './Recipe.module.css';
 import { Link } from 'react-router-dom';
 function Recipe(props) {
     var currentRecipe = props.currentRecipe;
-    var navigationLink = '/RecipeDetails/' + currentRecipe.recipeId;
+    var navigationLink = '/RecipeDetails/' + currentRecipe.Id;
     return (
         <li className={styles.card}>
             <div className={styles.ftrecipe}>

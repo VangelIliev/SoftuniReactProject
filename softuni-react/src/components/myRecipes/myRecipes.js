@@ -15,6 +15,7 @@ function MyRecipes(){
         const recipesArray = [];
         querySnapshot.forEach((doc) => {
             const data = doc.data();
+            data.Id = doc.id;
             recipesArray.push(data);   
         })
         setResult(recipesArray);
@@ -26,7 +27,7 @@ function MyRecipes(){
     return(
         <ul style={{width:"100%",textAlign:"center"}}>
         {recipes.map((recipe) =>
-          <Recipe key={recipe.recipeId} currentRecipe={recipe}/>
+          <Recipe key={recipe.Id} currentRecipe={recipe}/>
         )}
     </ul>
     )

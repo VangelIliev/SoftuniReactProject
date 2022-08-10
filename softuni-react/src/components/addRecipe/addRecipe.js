@@ -5,7 +5,6 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/UserContext";
-import { v4 as uuidv4 } from 'uuid';
 function AddRecipe(props){
     // const userEmail = props.email;
     const [recipeName, setRecipeName] = useState('');
@@ -44,7 +43,6 @@ function AddRecipe(props){
         event.preventDefault();
         try {
             await addDoc(collection(db, "recipes"), {
-                recipeId:uuidv4(),
                 user:currentUser,
                 recipeName:recipeName,
                 timeToPrepare:timeToPrepare,
