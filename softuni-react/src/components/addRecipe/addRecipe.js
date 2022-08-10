@@ -14,6 +14,7 @@ function AddRecipe(props){
     const [description, setRecipeDescription] = useState('');
     const [category, setCategory] = useState('select');
     const [currentUser, setUser] = useState('');
+    const [servings, setServings] = useState('');
 
     const navigate = useNavigate();
     const applicationUser = useContext(AuthContext);
@@ -31,6 +32,9 @@ function AddRecipe(props){
     }
     function setRecipeImageHandler(e){
         setRecipeImage(e.target.value);
+    }
+    function setServingsHandler(e){
+        setServings(e.target.value);
     }
     useEffect(() => {
         setUser(applicationUser);
@@ -87,6 +91,12 @@ function AddRecipe(props){
                 <label className={styles.formLabel} htmlFor='timeToPrepare'>Preparation Time:</label>
                 </div>
                 <input className={styles.formInput} type="number" value={timeToPrepare} onChange={timeChangeHandler}></input>
+            </div>
+            <div className={styles.formFieldWrapper}>
+                <div>
+                <label className={styles.formLabel} htmlFor='servings'>Servings:</label>
+                </div>
+                <input className={styles.formInput} type="number" value={servings} onChange={setServingsHandler}></input>
             </div>
             <div className={styles.formFieldWrapper}>
                 <div>

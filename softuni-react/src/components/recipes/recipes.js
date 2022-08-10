@@ -3,7 +3,6 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import  Recipe  from "../recipe/recipe.js";
 function Recipes(){
-
     const[result, setResult] = useState([]);
     async function getRecipes(){
         const dbQery = query(collection(db, "recipes"));
@@ -20,9 +19,9 @@ function Recipes(){
     },[]) 
 
     return(
-        <ul>
-            {result.map((recipe) => 
-                <Recipe key={recipe.recipeId} currentRecipe={recipe}/>
+        <ul style={{width:"100%",textAlign:"center"}}>
+            {result.map((recipe) =>
+              <Recipe key={recipe.recipeId} currentRecipe={recipe}/>
             )}
         </ul>
     )
