@@ -1,6 +1,7 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from '../firebaseConfig';
+import  Recipe  from "../recipe/recipe.js";
 function Recipes(){
 
     const[result, setResult] = useState([]);
@@ -10,8 +11,7 @@ function Recipes(){
         const recipesArray = [];
         querySnapshot.forEach((doc) => {
             const data = doc.data();
-            recipesArray.push(data); 
-            console.log(data);      
+            recipesArray.push(data);    
         })
         setResult(recipesArray);
     }
@@ -20,7 +20,11 @@ function Recipes(){
     },[]) 
 
     return(
-        <div>{result[0]?.category}</div>
+        <ul>
+            {result.map((recipe) => 
+                <Recipe key={recipe.recipeId} currentRecipe={recipe}/>
+            )}
+        </ul>
     )
 }
 export default Recipes;

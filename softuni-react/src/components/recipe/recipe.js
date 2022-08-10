@@ -1,19 +1,20 @@
 function Recipe(props) {
+    var currentRecipe = props.currentRecipe;
     return (
         <li>
             <div>
-                <h2>{props.title}</h2>
+                <h2>{currentRecipe.description}</h2>
                 <div className="imageContainer">
-                    <image src={props.recipeName}></image>
+                    <img alt="test" src={currentRecipe.recipeImage}></img>
                 </div>
                 <div>
                     <div>
-                        {props.category}
+                        {currentRecipe.category}
                     </div>
                     <div>
-                        {props.timeToPrepare}
+                        {currentRecipe.timeToPrepare}
                     </div>
-                    <div>{props.description}</div>
+                    <div>{currentRecipe.description}</div>
                 </div>
             </div>
         </li>

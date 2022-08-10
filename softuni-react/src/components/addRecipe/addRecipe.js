@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from '../firebaseConfig';
 import { useContext } from 'react';
-import { async } from '@firebase/util';
 import { AuthContext } from "../contexts/UserContext";
 import { v4 as uuidv4 } from 'uuid';
 function AddRecipe(props){
