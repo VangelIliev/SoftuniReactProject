@@ -3,6 +3,7 @@ import { collection, query,where, getDocs } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import { AuthContext } from "../contexts/UserContext";
 import { useContext } from 'react';
+import  Recipe  from "../recipe/recipe.js";
 function MyRecipes(){
 
     const[recipes, setResult] = useState([]);   
@@ -24,7 +25,11 @@ function MyRecipes(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]) 
     return(
-        <div>{recipes[0]?.category}</div>
+        <ul style={{width:"100%",textAlign:"center"}}>
+        {recipes.map((recipe) =>
+          <Recipe key={recipe.recipeId} currentRecipe={recipe}/>
+        )}
+    </ul>
     )
 }
 export default MyRecipes;
