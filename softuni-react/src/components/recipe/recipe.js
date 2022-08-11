@@ -19,7 +19,7 @@ function Recipe(props) {
                         <ul className={styles.recipeDetails}>
                             <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="time-outline"></ion-icon><span className={styles.value}>{currentRecipe.timeToPrepare}</span><span className={styles.title}>Minutes</span></li>
                             <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="book-outline"></ion-icon><span className={styles.value}>5</span><span className={styles.title}>Ingredients</span></li>
-                            <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="people-outline"></ion-icon><span className={styles.value}>{currentRecipe.servings}</span><span className={styles.title}>Serving</span></li>
+                            <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="people-outline"></ion-icon><span className={styles.value}>{currentRecipe.servings}</span><span className={styles.title}>Servings</span></li>
                         </ul>
                     </header>
                     <p className={styles.description}>
