@@ -5,13 +5,16 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import { AuthContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 function Header() {
     const user = useContext(AuthContext);
     const [currentUser, setUser] = useState("");
     const isUserLogged = Object.keys(user).length === 0;
+    const navigate = useNavigate();
 
     const logout = async () => {
         await signOut(auth);
+        navigate("/Login", { replace: true });
     }
 
      useEffect(() => {

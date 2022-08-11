@@ -48,30 +48,28 @@ function Register() {
         }
     }
     return (
-        <div className={styles.formWrapper}>
-        <form onSubmit={submitForm}>
-            <h1 className={styles.headerRegister}>Register  form</h1>
-            <div className={styles.form}>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='email'>Email Address:</label>
+        <div className={styles.container}>
+                <div className={styles.screen}>
+                    <div className={styles.content}>                        
+                        <form className={styles.login} onSubmit={submitForm}>
+                            <div className={styles.field}>
+                                <i className="login__icon fas fa-user"></i>
+                                <input type="email" className={styles.input} value={email} onChange={emailChangeHandler} onBlur={validateEmailField} placeholder="Email" />
+                                <span className={styles.inputValidation}>{emailError}</span>
+                            </div>
+                            <div className={styles.field}>
+                                <i className="icon fas fa-lock"></i>
+                                <input type="password" className={styles.input} placeholder="Password" value={password} onChange={passwordChangeHandler} onBlur={validatePasswordField} />
+                                <span className={styles.inputValidation}>{passwordError}</span>
+                            </div>
+                            <button className={styles.submit} type='submit'>
+                                <span className={styles.text}>Register</span>
+                                <i className="icon fas fa-chevron-right"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <input className={styles.formInput} type="email" value={email} onChange={emailChangeHandler} onBlur={validateEmailField}></input>
-                <span className={styles.inputValidation}>{emailError}</span>
             </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='password'>Password:</label>
-                </div>
-                <input className={styles.formInput} type="password" value={password} onChange={passwordChangeHandler} onBlur={validatePasswordField}></input>
-                <span className={styles.inputValidation}>{passwordError}</span>
-            </div>
-            </div>
-            <div>
-                <button className={styles.buttonRegister} type='submit'>Register</button>
-            </div>
-        </form>
-        </div>
     )
 }
 export default Register;
