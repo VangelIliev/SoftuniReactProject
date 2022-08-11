@@ -38,6 +38,7 @@
   
   .navLink:hover,.authLinks:hover, .dropdown:hover .dropbtn {
     background-color: gray;
+    cursor: pointer;
   }
   
   .content {
@@ -60,6 +61,7 @@
   
   .content a:hover {
     background-color: gray;
+    cursor: pointer;
   }
   
   .dropdown:hover .content {
