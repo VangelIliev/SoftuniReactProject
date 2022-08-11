@@ -39,7 +39,7 @@ a {
 }
 .ftrecipe {
   width: 350px;
-  height: 634px;
+  min-height: 580px;
   background: var(--white);
   display: flex;
   flex-direction: column;

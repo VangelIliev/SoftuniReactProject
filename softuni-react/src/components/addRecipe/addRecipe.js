@@ -48,7 +48,8 @@ function AddRecipe(props){
                 timeToPrepare:timeToPrepare,
                 description:description,
                 category:category,
-                recipeImage:recipeImage
+                recipeImage:recipeImage,
+                servings:servings
             });
             navigate("/MyRecipes", { replace: true });          
           } catch (e) {
@@ -56,58 +57,60 @@ function AddRecipe(props){
           }  
     }
     return (
-        <div className={styles.formWrapper}>
-        <form onSubmit={submitFormHandler}>
-            <h1 className={styles.headerAddRecipe}>Add a Recipe</h1>
-            <div className={styles.form}>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='recipeName'>RecipeName:</label>
+        <div className={styles.container}>
+                <div className={styles.screen}>
+                    <div className={styles.content}>
+                        <form className={styles.login} onSubmit={submitFormHandler}>
+                            <div className={styles.field}>                                                                
+                                <input type="text" className={styles.input} value={recipeName} onChange={recipeChangeHandler} placeholder="RecipeName" />                                
+                            </div>
+                            <div className={styles.field}>                                
+                                <input type="text" className={styles.input} placeholder="Recipe Image" value={recipeImage} onChange={setRecipeImageHandler}  />                               
+                            </div>
+                            <div className={styles.selectField}>
+                                <div>Category: </div>
+                            <select onChange={setCategoryHandler} value={category}>
+                                <option value="select">Select</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Dessert">Dessert</option>
+                            </select>
+                            </div>
+                            <div className={styles.field}>                                
+                                <input type="number" className={styles.input} placeholder="Preparation Type" value={timeToPrepare} onChange={timeChangeHandler}  />                               
+                            </div>
+                            <div className={styles.field}>                                
+                                <input type="number" className={styles.input} placeholder="Servings" value={servings} onChange={setServingsHandler}  />                               
+                            </div>
+                            <div className={styles.field}>
+                                <div className={styles.description}>Description</div>                                
+                                <textarea className={styles.textArea} type="text" value={description} onChange={descriptionChangeHandler}></textarea>                            
+                            </div>
+                            <button className={styles.submit} type='submit'>
+                                <span className={styles.text}>Add Recipe</span>                               
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <input className={styles.formInput} type="text" value={recipeName} onChange={recipeChangeHandler}></input>
             </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='recipeImage'>RecipeImageUrl:</label>
-                </div>
-                <input className={styles.formInput} type="text" value={recipeImage} onChange={setRecipeImageHandler}></input>
-            </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='category'>Category:</label>
-                </div>
-               <select className={styles.select}  onChange={setCategoryHandler} value={category}>
-                  <option value="select">Select</option>
-                  <option value="Breakfast">Breakfast</option>
-                  <option value="Lunch">Lunch</option>
-                  <option value="Dinner">Dinner</option>
-                  <option value="Dessert">Dessert</option>
-               </select>
-           </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='timeToPrepare'>Preparation Time:</label>
-                </div>
-                <input className={styles.formInput} type="number" value={timeToPrepare} onChange={timeChangeHandler}></input>
-            </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='servings'>Servings:</label>
-                </div>
-                <input className={styles.formInput} type="number" value={servings} onChange={setServingsHandler}></input>
-            </div>
-            <div className={styles.formFieldWrapper}>
-                <div>
-                <label className={styles.formLabel} htmlFor='description'>Description:</label>
-                </div>
-                <textarea className={styles.formInput} type="text" value={description} onChange={descriptionChangeHandler}></textarea>
-            </div>
-            </div>
-            <div>
-                <button className={styles.buttonRegister} type='submit'>Add</button>
-            </div>
-        </form>
-        </div>
+        // <div className={styles.formWrapper}>
+        // <form onSubmit={submitFormHandler}>
+        //     
+        //  
+        //   
+        //     <div className={styles.formFieldWrapper}>
+        //         <div>
+        //         <label className={styles.formLabel} htmlFor='description'>Description:</label>
+        //         </div>
+        //         <textarea className={styles.formInput} type="text" value={description} onChange={descriptionChangeHandler}></textarea>
+        //     </div>
+        //     </div>
+        //     <div>
+        //         <button className={styles.buttonRegister} type='submit'>Add</button>
+        //     </div>
+        // </form>
+        // </div>
     )
 }
 export default AddRecipe;

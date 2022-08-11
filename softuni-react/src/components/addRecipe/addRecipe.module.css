@@ -1,49 +1,124 @@
-.headerAddRecipe{
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 80vh;
     color: white;
 }
-.formWrapper{
-    background-color: #a83232;
-    width: 32%;
-    height: 525px;
-    margin-left: auto;
-    margin-right: auto;
+
+.screen {		
+	background: linear-gradient(90deg, #ff4f87, #7C78B8);		
+	position: relative;	
+	height: fit-content;
+	width: 340px;	
+	box-shadow: 0px 0px 24px #5C5696;
 }
-.select{
-    padding: 4px;
-    margin-left: 5px;
-    margin-top: 5px;
-    width: 200px;
+
+.content {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
 }
-.formFieldWrapper{
+
+.background {		
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 0;
+	-webkit-clip-path: inset(0 0 0 0);
+	clip-path: inset(0 0 0 0);	
+}
+.login {
+	width: 320px;
+	padding: 30px;
+	padding-top: 26px;
+}
+
+.field {
+	padding: 20px 0px;	
+	position: relative;	
+}
+
+.input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+    color: white;
+    font-size: 15px;
+}
+.input::placeholder {
+    color: white;
+}
+.input:active,
+.input:focus,
+.input:hover {
+	outline: none;
+	border-bottom-color: #fafafb;
+}
+
+.submit {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 20px;
+    margin-left: 25px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #ff4f87;
+	box-shadow: 0px 2px 2px #5C5696;
+	cursor: pointer;
+	transition: .2s;   
+}
+.text{
+    margin:0px auto;
+}
+.submit:active,
+.submit:focus,
+.submit:hover {
+	border-color: #6A679E;
+	outline: none;
+}
+.selectField{
+    text-align: left;
+    margin-left: 30px;
     padding: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    width: 300px;
 }
-.form{
-    text-align: left;
+select{
+    width: 190px;
 }
-.formLabel{
-    margin-left: 5px;
-    color: white;
-}
-.formInput{
-    margin-left: 5px;
-    width: 100%;
-}
-.formInput:hover{
-    border-color: aqua;
-}
-.buttonRegister{
-    width: 50%;
-    height: 30px;
-    background-color: rgb(59, 182, 135);
-    color: white;
+.textArea{
+    max-width: 235px;
+    min-width: 235px;
+    min-height: 30px;
+    max-height: 150px;
+    padding:5px;
+    margin-left: 35px;
     margin-top: 5px;
-    border: 1px white;
 }
-.buttonRegister:hover{
-    cursor: pointer;
-    background-color: rgb(59, 182, 135);
+.description{
+    text-align: left;
+    margin-left: 35px;
+    
 }
