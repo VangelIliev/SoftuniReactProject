@@ -5,6 +5,7 @@ import AddRecipe from './components/addRecipe/addRecipe';
 import Recipes from  './components/recipes/recipes';
 import MyRecipes from './components/myRecipes/myRecipes';
 import RecipeDetails from './components/recipeDetails/recipeDetails';
+import Categories from './components/category/categories';
 import { Routes, Route} from 'react-router-dom';
 import { useState} from 'react';
 import { onAuthStateChanged} from "firebase/auth";
@@ -36,6 +37,7 @@ function App() {
           <Route path="Recipes" element={ <Recipes /> } />
           <Route path="MyRecipes" element={ <MyRecipes/> } />
           <Route path="RecipeDetails/:recipeId" element={ <RecipeDetails/> } />
+          <Route path="Category/:category" element={ <Categories/> } />
         </Routes>
         </AuthContext.Provider>
 

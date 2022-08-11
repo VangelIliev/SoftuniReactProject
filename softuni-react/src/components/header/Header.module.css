@@ -1,7 +1,7 @@
 
   .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: #ff4f87;
   }
   .navLink {
     float: left;
@@ -22,6 +22,7 @@
   .dropdown {
     float: left;
     overflow: hidden;
+    margin-top: 2px;
   }
   
   .dropdown .dropbtn {
@@ -36,7 +37,7 @@
   }
   
   .navLink:hover,.authLinks:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: gray;
   }
   
   .content {
@@ -58,7 +59,7 @@
   }
   
   .content a:hover {
-    background-color: #ddd;
+    background-color: gray;
   }
   
   .dropdown:hover .content {
@@ -69,7 +70,7 @@
     padding: 18px 16px;
     text-decoration: none;
     text-align: center;
-    background-color: #333;
+    background-color: #ff4f87;
     color: white;
     border: none;
     float: right;
@@ -79,12 +80,12 @@
     padding: 18px 16px;
     text-decoration: none;
     text-align: center;
-    background-color: #333;
+    background-color: #ff4f87;
     color: white;
     border: none;
     float: right;
   }
   .userNavButton:hover{
-    background-color: red;
+    background-color: gray;
     cursor: pointer;
   }

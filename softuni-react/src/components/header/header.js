@@ -28,10 +28,10 @@ function Header() {
                 <div className={styles.dropdown}>
                     <button className={styles.dropbtn}>Categories</button>
                     <div className={styles.content}>
-                        <Link to="#">Breakfast</Link>
-                        <Link to="#">Lunch</Link>
-                        <Link to="#">Dinner</Link>
-                        <Link to="#">Dessert</Link>
+                        <Link to="/Category/Breakfast">Breakfast</Link>
+                        <Link to="/Category/Lunch">Lunch</Link>
+                        <Link to="/Category/Dinner">Dinner</Link>
+                        <Link to="/Category/Dessert">Dessert</Link>
                     </div>
                 </div>
                 <Link className={styles.navLink} to="/AddRecipe">Add Recipe</Link>
@@ -47,10 +47,10 @@ function Header() {
                 <div className={styles.dropdown}>
                     <button className={styles.dropbtn}>Categories</button>
                     <div className={styles.content}>
-                        <Link to="#">Breakfast</Link>
-                        <Link to="#">Lunch</Link>
-                        <Link to="#">Dinner</Link>
-                        <Link to="#">Dessert</Link>
+                        <Link to="/Category/Breakfast">Breakfast</Link>
+                        <Link to="/Category/Lunch">Lunch</Link>
+                        <Link to="/Category/Dinner">Dinner</Link>
+                        <Link to="/Category/Dessert">Dessert</Link>
                     </div>
                 </div>
                 <Link className={styles.authLinks} to="Register">Register</Link>
