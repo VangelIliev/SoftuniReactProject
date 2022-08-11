@@ -57,7 +57,7 @@ a {
   position: absolute;
   margin: 0;
   width: 100%;
-  color: var(--white);
+  color: whitesmoke;
   font-family: var(--headlinesFont);
   font-size: 25px;
   height: 100%;
@@ -123,7 +123,7 @@ a {
 .anker {
   font-family: var(--headlinesFont);
   display: inline-block;
-  background: var(--wildWatermelon);
+  background: linear-gradient(90deg, #ff4f87, #7C78B8);
   padding: 0.45em 1em;
   width: 100%;
   text-align: center;
