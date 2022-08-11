@@ -20,7 +20,7 @@
 	background: linear-gradient(90deg, #ff4f87, #7C78B8);		
 	position: relative;	
 	height: fit-content;
-	width: 340px;	
+	width: 350px;	
 	box-shadow: 0px 0px 24px #5C5696;
 }
 
@@ -119,6 +119,42 @@ select{
 }
 .description{
     text-align: left;
+    margin-left: 35px;   
+}
+.ingredientsTitle{
+    text-align: left;
     margin-left: 35px;
-    
+}
+.quantity{
+    padding:5px;
+    height: 30px;
+    width: 195px;
+    color: black;
+    margin-top: 7px;
+}
+.ingredient{
+    padding:5px;
+    height: 30px;
+    width: 195px;
+    color: black;
+    margin-top: 7px;
+}
+.ingredientsBtn{
+    margin-top: 10px;
+    width: 150px;
+    padding: 7px;
+    border-radius: 14px;
+    border-color: #036042;
+    border-bottom-color: #036042;
+    background-color: white;
+    color:#ff4f87;
+    font-weight: 600;
+}
+.ingredientsBtn:hover{
+    border-color: aqua;
+    cursor:pointer;
+}
+.allIngredients{
+    margin-top: 10px;
+    margin-left: 5px;
 }

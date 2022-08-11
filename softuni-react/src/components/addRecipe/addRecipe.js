@@ -5,8 +5,10 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/UserContext";
-function AddRecipe(props){
-    // const userEmail = props.email;
+function AddRecipe(){
+    const [ingredient, setIngredient] = useState([]);
+    const [quantity, setIngredientQuantity] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     const [recipeName, setRecipeName] = useState('');
     const [recipeImage, setRecipeImage] = useState('');
     const [timeToPrepare, setTimeToPrepare] = useState('');
@@ -35,6 +37,27 @@ function AddRecipe(props){
     function setServingsHandler(e){
         setServings(e.target.value);
     }
+    function setIngredientHandler(e){
+        setIngredient(e.target.value);
+    }
+    function setIngredientQuantityHandler(e){
+        setIngredientQuantity(e.target.value);
+    }
+    function addIngredient(){
+        if(ingredient === ''){
+            alert("Ingredient can't be empty")
+        }
+        else if(quantity === ''){
+            alert("Quantity can't be empty")
+        }
+        else{
+            const ingredientToAdd = {"ingredient":ingredient,"quantity":quantity};
+            console.log(ingredientToAdd);
+            setIngredients([...ingredients, ingredientToAdd]);
+            setIngredient('');
+            setIngredientQuantity('');
+        }
+    }
     useEffect(() => {
         setUser(applicationUser);
     },[applicationUser])
@@ -45,6 +68,7 @@ function AddRecipe(props){
             await addDoc(collection(db, "recipes"), {
                 user:currentUser,
                 recipeName:recipeName,
+                ingredients:ingredients,
                 timeToPrepare:timeToPrepare,
                 description:description,
                 category:category,
@@ -83,6 +107,19 @@ function AddRecipe(props){
                             <div className={styles.field}>                                
                                 <input type="number" className={styles.input} placeholder="Servings" value={servings} onChange={setServingsHandler}  />                               
                             </div>
+                            <div className={styles.ingredients}>
+                                <div className={styles.ingredientsTitle}>Ingredients</div>
+                                <input type="text" className={styles.ingredient} placeholder="Ingredient" value={ingredient} onChange={setIngredientHandler}></input>
+                                <input type="number" className={styles.quantity} placeholder="Quantity" value={quantity} onChange={setIngredientQuantityHandler}></input>
+                                <button type="button" onClick={addIngredient} className={styles.ingredientsBtn}>Add Ingredient</button>
+                                <div className={styles.allIngredients}>
+                                    {ingredients.map((x, index) => {
+                                        return (
+                                            <div key={index}><span>{x.ingredient} : </span><span>{x.quantity} Grams</span></div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
                             <div className={styles.field}>
                                 <div className={styles.description}>Description</div>                                
                                 <textarea className={styles.textArea} type="text" value={description} onChange={descriptionChangeHandler}></textarea>                            
@@ -94,23 +131,6 @@ function AddRecipe(props){
                     </div>
                 </div>
             </div>
-        // <div className={styles.formWrapper}>
-        // <form onSubmit={submitFormHandler}>
-        //     
-        //  
-        //   
-        //     <div className={styles.formFieldWrapper}>
-        //         <div>
-        //         <label className={styles.formLabel} htmlFor='description'>Description:</label>
-        //         </div>
-        //         <textarea className={styles.formInput} type="text" value={description} onChange={descriptionChangeHandler}></textarea>
-        //     </div>
-        //     </div>
-        //     <div>
-        //         <button className={styles.buttonRegister} type='submit'>Add</button>
-        //     </div>
-        // </form>
-        // </div>
     )
 }
 export default AddRecipe;
