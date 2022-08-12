@@ -47,12 +47,16 @@ function RecipeDetails(){
                 </div>
                 <div className={styles.content}>
                     <h4>{recipe.recipeName}</h4>
-                    <div>
+                    <div className={styles.ingredients}>
+                        <p>Ingredients</p>
+                        {recipe.ingredients.map(x => {
+                            return (<p>{x.ingredient} : {x.quantity} Grams</p>)
+                        })}
+                    </div>
                         <p className={styles.paragraph}>Category: <strong>{recipe.category}</strong></p>
                         <p className={styles.paragraph}>Servings: <strong>{recipe.servings}</strong></p>
                         <p className={styles.paragraph}>Preparation Time: <strong>{recipe.timeToPrepare} minutes</strong></p>
-                        <p className={styles.paragraph}>Description: <strong>{recipe.description}</strong></p>
-                    </div>            
+                        <p className={styles.paragraph}>Description: <strong>{recipe.description}</strong></p>          
                     <button className={styles.buttonRed} onClick={DeleteRecipe}>Delete</button>
                     <button className={styles.buttonBlue} onClick={EditRecipe}>Edit</button>
                 </div>
