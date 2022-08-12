@@ -2,6 +2,12 @@ import styles from './Recipe.module.css';
 import { Link } from 'react-router-dom';
 function Recipe(props) {
     var currentRecipe = props.currentRecipe;
+    var recipeIngredients = props.currentRecipe.ingredients.length;
+    var recipeDescription = props.currentRecipe.description;
+    if(recipeDescription.length > 45){
+        recipeDescription = recipeDescription.substring(0, 45) + '...';
+        console.log(recipeDescription);
+    }
     var navigationLink = '/RecipeDetails/' + currentRecipe.Id;
     return (
         <li className={styles.card}>
@@ -18,12 +24,12 @@ function Recipe(props) {
                         </div>
                         <ul className={styles.recipeDetails}>
                             <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="time-outline"></ion-icon><span className={styles.value}>{currentRecipe.timeToPrepare}</span><span className={styles.title}>Minutes</span></li>
-                            <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="book-outline"></ion-icon><span className={styles.value}>5</span><span className={styles.title}>Ingredients</span></li>
+                            <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="book-outline"></ion-icon><span className={styles.value}>{recipeIngredients}</span><span className={styles.title}>Ingredients</span></li>
                             <li className={styles.recipeDetailsItem}><ion-icon className="ionIcon" name="people-outline"></ion-icon><span className={styles.value}>{currentRecipe.servings}</span><span className={styles.title}>Servings</span></li>
                         </ul>
                     </header>
                     <p className={styles.description}>
-                        {currentRecipe.description}</p>
+                        {recipeDescription}</p>
                     <footer className={styles.contentFooter}><Link className={styles.anker} to={navigationLink}>View Recipe </Link> </footer>
                 </div>
             </div>
