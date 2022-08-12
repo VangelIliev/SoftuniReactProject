@@ -29,7 +29,7 @@
     border-radius : 15px;
   }
   .container .card:hover {
-    min-height: 380px;   
+    height: fit-content;
   }
   
   
@@ -51,7 +51,7 @@
   
   .container .card .content {
     position : relative;
-    top : -140px;
+    bottom: 0;
     padding : 10px 15px;
     color : white;
     text-align : left;

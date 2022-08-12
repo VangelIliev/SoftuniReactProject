@@ -47,10 +47,12 @@ function RecipeDetails(){
                 </div>
                 <div className={styles.content}>
                     <h4>{recipe.recipeName}</h4>
-                    <p>Category: <strong>{recipe.category}</strong></p>
-                    <p>Servings: <strong>{recipe.servings}</strong></p>
-                    <p>Preparation Time: <strong>{recipe.timeToPrepare} minutes</strong></p>
-                    <p>Description: <strong>{recipe.description}</strong></p>
+                    <div>
+                        <p className={styles.paragraph}>Category: <strong>{recipe.category}</strong></p>
+                        <p className={styles.paragraph}>Servings: <strong>{recipe.servings}</strong></p>
+                        <p className={styles.paragraph}>Preparation Time: <strong>{recipe.timeToPrepare} minutes</strong></p>
+                        <p className={styles.paragraph}>Description: <strong>{recipe.description}</strong></p>
+                    </div>            
                     <button className={styles.buttonRed} onClick={DeleteRecipe}>Delete</button>
                     <button className={styles.buttonBlue} onClick={EditRecipe}>Edit</button>
                 </div>
