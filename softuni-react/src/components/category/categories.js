@@ -6,7 +6,6 @@ import  Recipe  from "../recipe/recipe.js";
 function Categories(){
     const params = useParams();
     const category = params.category;
-    console.log(category);
     const[recipes, setResult] = useState([]);
     async function getRecipes(){
         const dbQery = query(collection(db, "recipes"), where("category", "==", category));

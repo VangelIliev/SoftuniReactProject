@@ -1,11 +1,16 @@
-import styles from './addRecipe.module.css';
+import styles from './editRecipe.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore"; 
+import { doc,updateDoc } from "firebase/firestore"; 
 import { db } from '../firebaseConfig';
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/UserContext";
-function AddRecipe(){
+import { useParams } from "react-router-dom";
+function EditCurrentRecipe(props){
+    const currentRecipe = props.recipe;
+    const params = useParams();
+    const recipeId = params.recipeId;
+
     const [nameError, setNameError] = useState('');
     const [imageError, setImageError] = useState('');
     const [categoryError, setCategoryError] = useState('');
@@ -16,14 +21,14 @@ function AddRecipe(){
     const [descriptionError, setDescriptionError] = useState('');
     const [ingredient, setIngredient] = useState('');
     const [quantity, setIngredientQuantity] = useState('');
-    const [ingredients, setIngredients] = useState([]);
-    const [recipeName, setRecipeName] = useState('');
-    const [recipeImage, setRecipeImage] = useState('');
-    const [timeToPrepare, setTimeToPrepare] = useState('');
-    const [description, setRecipeDescription] = useState('');
-    const [category, setCategory] = useState('select');
+    const [ingredients, setIngredients] = useState(currentRecipe.ingredients);
+    const [recipeName, setRecipeName] = useState(currentRecipe.recipeName);
+    const [recipeImage, setRecipeImage] = useState(currentRecipe.recipeImage);
+    const [timeToPrepare, setTimeToPrepare] = useState(currentRecipe.timeToPrepare);
+    const [description, setRecipeDescription] = useState(currentRecipe.description);
+    const [category, setCategory] = useState(currentRecipe.category);
     const [currentUser, setUser] = useState('');
-    const [servings, setServings] = useState(''); 
+    const [servings, setServings] = useState(currentRecipe.servings); 
 
     const navigate = useNavigate();
     const applicationUser = useContext(AuthContext);
@@ -181,7 +186,8 @@ function AddRecipe(){
             return alert("Some fields are missing");
         }
         try {
-            await addDoc(collection(db, "recipes"), {
+            const recipeRef = doc(db, 'recipes',recipeId);
+            await updateDoc(recipeRef,{
                 user:currentUser,
                 recipeName:recipeName,
                 ingredients:ingredients,
@@ -190,7 +196,8 @@ function AddRecipe(){
                 category:category,
                 recipeImage:recipeImage,
                 servings:servings
-            });
+            })
+            
             navigate("/MyRecipes", { replace: true });          
           } catch (e) {
             console.error("Error adding document: ", e);
@@ -249,7 +256,7 @@ function AddRecipe(){
                                 <div className={styles.error}>{descriptionError}</div>                          
                             </div>
                                 <button className={styles.submit} type='submit'>
-                                    <span className={styles.text}>Add Recipe</span>
+                                    <span className={styles.text}>Edit Recipe</span>
                                 </button>
                         </form>
                     </div>
@@ -257,4 +264,4 @@ function AddRecipe(){
             </div>
     )
 }
-export default AddRecipe;
+export default EditCurrentRecipe;

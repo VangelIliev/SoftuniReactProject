@@ -1,12 +1,14 @@
 import styles from './Recipe.module.css';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../contexts/UserContext";
+import { useContext } from 'react';
 function Recipe(props) {
+    const applicationUser = useContext(AuthContext);
     var currentRecipe = props.currentRecipe;
     var recipeIngredients = props.currentRecipe.ingredients.length;
     var recipeDescription = props.currentRecipe.description;
     if(recipeDescription.length > 45){
         recipeDescription = recipeDescription.substring(0, 45) + '...';
-        console.log(recipeDescription);
     }
     var navigationLink = '/RecipeDetails/' + currentRecipe.Id;
     return (
@@ -30,7 +32,11 @@ function Recipe(props) {
                     </header>
                     <p className={styles.description}>
                         {recipeDescription}</p>
-                    <footer className={styles.contentFooter}><Link className={styles.anker} to={navigationLink}>View Recipe </Link> </footer>
+                        {applicationUser && 
+                            <footer className={styles.contentFooter}>
+                            <Link className={styles.anker} to={navigationLink}>View Recipe </Link> 
+                        </footer>}
+                    
                 </div>
             </div>
         </li>

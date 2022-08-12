@@ -4,8 +4,10 @@ import { doc,getDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import styles from './RecipeDetails.module.css';
 import { useNavigate } from "react-router-dom";
+import EditCurrentRecipe from "../editRecipe/editRecipe";
 function RecipeDetails(){
     const [recipe, setRecipe] = useState({});
+    const [editRecipe, changeRecipe] = useState(false);
     const params = useParams();
     const recipeId = params.recipeId;
     const navigate = useNavigate();
@@ -15,7 +17,6 @@ function RecipeDetails(){
             const docRef = doc(db, "recipes", recipeId);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                console.log(docSnap.data());
                 setRecipe(docSnap.data());
             }
             else {
@@ -35,35 +36,40 @@ function RecipeDetails(){
         }
     }
     function EditRecipe(){
-        alert("iskam da napravq edit po tazi recepta");
+        changeRecipe(true);
     }
     useEffect( () => {
         getRecipe(recipeId);    
     },[recipeId])
-    return(
-        <div className={styles.container}>
-            <div className={styles.card}>
-                <div className={styles.image}>
-                    <img alt={recipe.recipeName} src={recipe.recipeImage} />
-                </div>
-                <div className={styles.content}>
-                    <h4>{recipe.recipeName}</h4>
-                    <div className={styles.ingredients}>
-                        <p>Ingredients</p>
-                        {recipe.ingredients?.map((x, index) => {
-                            return (<p key={index}>{x.ingredient} : {x.quantity} Grams</p>)
-                        })}
+    if(!editRecipe){
+        return(
+            <div className={styles.container}>
+                <div className={styles.card}>
+                    <div className={styles.image}>
+                        <img alt={recipe.recipeName} src={recipe.recipeImage} />
                     </div>
-                        <p className={styles.paragraph}>Category: <strong>{recipe.category}</strong></p>
-                        <p className={styles.paragraph}>Servings: <strong>{recipe.servings}</strong></p>
-                        <p className={styles.paragraph}>Preparation Time: <strong>{recipe.timeToPrepare} minutes</strong></p>
-                        <p className={styles.paragraph}>Description: <strong>{recipe.description}</strong></p>          
-                    <button className={styles.buttonRed} onClick={DeleteRecipe}>Delete</button>
-                    <button className={styles.buttonBlue} onClick={EditRecipe}>Edit</button>
+                    <div className={styles.content}>
+                        <h4>{recipe.recipeName}</h4>
+                        <div className={styles.ingredients}>
+                            <p>Ingredients</p>
+                            {recipe.ingredients?.map((x, index) => {
+                                return (<p key={index}>{x.ingredient} : {x.quantity} Grams</p>)
+                            })}
+                        </div>
+                            <p className={styles.paragraph}>Category: <strong>{recipe.category}</strong></p>
+                            <p className={styles.paragraph}>Servings: <strong>{recipe.servings}</strong></p>
+                            <p className={styles.paragraph}>Preparation Time: <strong>{recipe.timeToPrepare} minutes</strong></p>
+                            <p className={styles.paragraph}>Description: <strong>{recipe.description}</strong></p>          
+                            <button className={styles.buttonRed} onClick={DeleteRecipe}>Delete</button>
+                            <button className={styles.buttonBlue} onClick={EditRecipe}>Edit</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
+    else{
+        return <EditCurrentRecipe recipe={recipe}></EditCurrentRecipe>
+    }
 }
 
 export default RecipeDetails;
