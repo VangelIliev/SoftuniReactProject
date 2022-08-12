@@ -4,12 +4,15 @@ import { doc,getDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import styles from './RecipeDetails.module.css';
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from "../contexts/UserContext";
 import EditCurrentRecipe from "../editRecipe/editRecipe";
 function RecipeDetails(){
     const [recipe, setRecipe] = useState({});
     const [editRecipe, changeRecipe] = useState(false);
     const params = useParams();
     const recipeId = params.recipeId;
+    const applicationUser = useContext(AuthContext);
     const navigate = useNavigate();
 
     async function getRecipe(recipeId) {
@@ -41,7 +44,10 @@ function RecipeDetails(){
     useEffect( () => {
         getRecipe(recipeId);    
     },[recipeId])
-    if(!editRecipe){
+    if(applicationUser === ''){
+        return <h1>please login</h1>
+    }
+    else if(!editRecipe){
         return(
             <div className={styles.container}>
                 <div className={styles.card}>
