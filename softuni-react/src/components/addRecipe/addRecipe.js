@@ -6,8 +6,16 @@ import { db } from '../firebaseConfig';
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/UserContext";
 function AddRecipe(){
-    const [ingredient, setIngredient] = useState([]);
-    const [quantity, setIngredientQuantity] = useState([]);
+    const [nameError, setNameError] = useState('');
+    const [imageError, setImageError] = useState('');
+    const [categoryError, setCategoryError] = useState('');
+    const [preparationError, setPreparationError] = useState('');
+    const [servingsError, setServingsError] = useState('');
+    const [ingredientError, setIngredientError] = useState('');
+    const [quantityError, setQuantityError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
+    const [ingredient, setIngredient] = useState('');
+    const [quantity, setIngredientQuantity] = useState('');
     const [ingredients, setIngredients] = useState([]);
     const [recipeName, setRecipeName] = useState('');
     const [recipeImage, setRecipeImage] = useState('');
@@ -15,10 +23,94 @@ function AddRecipe(){
     const [description, setRecipeDescription] = useState('');
     const [category, setCategory] = useState('select');
     const [currentUser, setUser] = useState('');
-    const [servings, setServings] = useState('');
+    const [servings, setServings] = useState(''); 
 
     const navigate = useNavigate();
     const applicationUser = useContext(AuthContext);
+
+    function setErrorHandler(e){
+        var inputName = e.target.name;
+        var inputValue = e.target.value;
+        if(inputName === "Name"){
+            if(inputValue === ''){
+                setNameError("Name can't be empty");
+            }
+            else if(inputValue.length < 6){
+                setNameError("Name must be atleast 6 chars");
+            }
+            else{
+                setNameError("");
+            }
+        }
+        else if(inputName === "Image"){
+            if(inputValue === ''){
+                setImageError("Image can't be empty");
+            }
+            
+            else{
+                setImageError("");
+            }
+        }
+        else if(inputName === "Category"){
+            if(inputValue === ''){
+                setCategoryError("Category can't be empty");
+            }
+            
+            else{
+                setCategoryError("");
+            }
+        }
+        else if(inputName === "Preparation"){
+            if(inputValue === ''){
+                setPreparationError("Preparation can't be empty");
+            }
+            
+            else{
+                setPreparationError("");
+            }
+        }
+        else if(inputName === "Servings"){
+            if(inputValue === ''){
+                setServingsError("Servings can't be empty");
+            }
+            
+            else{
+                setServingsError("");
+            }
+        }
+        else if(inputName === "Ingredient"){
+            if(inputValue === ''){
+                setIngredientError("Ingredient can't be empty");
+            }
+            else if(inputValue.length < 3){
+                setIngredientError("Ingredient can't be less than 3 symbols");
+            }
+            else{
+                setIngredientError("");
+            }
+        }
+        else if(inputName === "Quantity"){
+            if(inputValue === ''){
+                setQuantityError("Quantity can't be empty");
+            }
+            
+            else{
+                setQuantityError("");
+            }
+        }
+        else if(inputName === "Description"){
+            if(inputValue === ''){
+                setDescriptionError("Description can't be empty");
+            }
+            else if(inputValue.length < 10){
+                setDescriptionError("Description can't be less than 10 symbols");
+            }
+            else{
+                setDescriptionError("");
+            }
+        }
+
+    }
     function recipeChangeHandler(e){
         setRecipeName(e.target.value);
     }
@@ -43,20 +135,41 @@ function AddRecipe(){
     function setIngredientQuantityHandler(e){
         setIngredientQuantity(e.target.value);
     }
-    function addIngredient(){
-        if(ingredient === ''){
-            alert("Ingredient can't be empty")
-        }
-        else if(quantity === ''){
-            alert("Quantity can't be empty")
-        }
-        else{
-            const ingredientToAdd = {"ingredient":ingredient,"quantity":quantity};
-            console.log(ingredientToAdd);
+    function addIngredient(){    
+        console.log(ingredient);  
+        if(ingredient !== '' && quantity !== ''){
+            const ingredientToAdd = { "ingredient": ingredient, "quantity": quantity };
             setIngredients([...ingredients, ingredientToAdd]);
             setIngredient('');
-            setIngredientQuantity('');
+            setIngredientQuantity('');  
+        }     
+    }
+    function validateRecipe(){
+        var error = false;
+        if(recipeName === '' || recipeName.length <= 6){
+            error = true           
         }
+        else if(recipeImage === ''){
+            error = true          
+        }
+        else if(category === ''){
+            error = true
+        }
+        else if(timeToPrepare === ''){
+            error = true
+        }
+        else if(servings === ''){
+            error = true
+        }
+        else if(ingredients.length === 0){
+            error = true;
+        }
+                 
+        else if(description === '' || description.length < 10){
+            error = true
+        }        
+        
+        return error;
     }
     useEffect(() => {
         setUser(applicationUser);
@@ -64,6 +177,10 @@ function AddRecipe(){
     
     const submitFormHandler = async (event) => {
         event.preventDefault();
+        var isValidated = validateRecipe();
+        if(isValidated){
+            return alert("Some fields are missing");
+        }
         try {
             await addDoc(collection(db, "recipes"), {
                 user:currentUser,
@@ -86,31 +203,38 @@ function AddRecipe(){
                     <div className={styles.content}>
                         <form className={styles.login} onSubmit={submitFormHandler}>
                             <div className={styles.field}>                                                                
-                                <input type="text" className={styles.input} value={recipeName} onChange={recipeChangeHandler} placeholder="RecipeName" />                                
+                                <input type="text" name="Name" className={styles.input} value={recipeName} onChange={recipeChangeHandler} placeholder="RecipeName" onBlur={setErrorHandler} />
+                                <div className={styles.error}>{nameError}</div>                                        
                             </div>
                             <div className={styles.field}>                                
-                                <input type="text" className={styles.input} placeholder="Recipe Image" value={recipeImage} onChange={setRecipeImageHandler}  />                               
+                                <input type="text" name="Image" className={styles.input} placeholder="Recipe Image" value={recipeImage} onChange={setRecipeImageHandler} onBlur={setErrorHandler}  />
+                                <div className={styles.error}>{imageError}</div>                             
                             </div>
                             <div className={styles.selectField}>
                                 <div>Category: </div>
-                            <select onChange={setCategoryHandler} value={category}>
-                                <option value="select">Select</option>
+                            <select onChange={setCategoryHandler} name="Category" value={category} onBlur={setErrorHandler}>
+                                <option value="">Select</option>
                                 <option value="Breakfast">Breakfast</option>
                                 <option value="Lunch">Lunch</option>
                                 <option value="Dinner">Dinner</option>
                                 <option value="Dessert">Dessert</option>
                             </select>
+                            <div className={styles.error}>{categoryError}</div>
                             </div>
                             <div className={styles.field}>                                
-                                <input type="number" className={styles.input} placeholder="Preparation Type" value={timeToPrepare} onChange={timeChangeHandler}  />                               
+                                <input type="number" name="Preparation" className={styles.input} placeholder="Preparation Time" value={timeToPrepare} onChange={timeChangeHandler} onBlur={setErrorHandler} />
+                                <div className={styles.error}>{preparationError}</div>                             
                             </div>
                             <div className={styles.field}>                                
-                                <input type="number" className={styles.input} placeholder="Servings" value={servings} onChange={setServingsHandler}  />                               
+                                <input type="number" name="Servings" className={styles.input} placeholder="Servings" value={servings} onChange={setServingsHandler}  onBlur={setErrorHandler}/>
+                                <div className={styles.error}>{servingsError}</div>                                
                             </div>
                             <div className={styles.ingredients}>
                                 <div className={styles.ingredientsTitle}>Ingredients</div>
-                                <input type="text" className={styles.ingredient} placeholder="Ingredient" value={ingredient} onChange={setIngredientHandler}></input>
-                                <input type="number" className={styles.quantity} placeholder="Quantity" value={quantity} onChange={setIngredientQuantityHandler}></input>
+                                <input type="text" name="Ingredient" className={styles.ingredient} placeholder="Ingredient" value={ingredient} onChange={setIngredientHandler} onBlur={setErrorHandler}></input>
+                                <div className={styles.error}>{ingredientError}</div>
+                                <input type="number" name="Quantity" className={styles.quantity} placeholder="Quantity" value={quantity} onChange={setIngredientQuantityHandler} onBlur={setErrorHandler}></input>
+                                <div className={styles.error}>{quantityError}</div>
                                 <button type="button" onClick={addIngredient} className={styles.ingredientsBtn}>Add Ingredient</button>
                                 <div className={styles.allIngredients}>
                                     {ingredients.map((x, index) => {
@@ -122,11 +246,12 @@ function AddRecipe(){
                             </div>
                             <div className={styles.field}>
                                 <div className={styles.description}>Description</div>                                
-                                <textarea className={styles.textArea} type="text" value={description} onChange={descriptionChangeHandler}></textarea>                            
+                                <textarea className={styles.textArea} name="Description" type="text" value={description} onChange={descriptionChangeHandler} onBlur={setErrorHandler}></textarea>
+                                <div className={styles.error}>{descriptionError}</div>                          
                             </div>
-                            <button className={styles.submit} type='submit'>
-                                <span className={styles.text}>Add Recipe</span>                               
-                            </button>
+                                <button className={styles.submit} type='submit'>
+                                    <span className={styles.text}>Add Recipe</span>
+                                </button>
                         </form>
                     </div>
                 </div>

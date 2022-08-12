@@ -15,6 +15,7 @@ function RecipeDetails(){
             const docRef = doc(db, "recipes", recipeId);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
+                console.log(docSnap.data());
                 setRecipe(docSnap.data());
             }
             else {
@@ -49,8 +50,8 @@ function RecipeDetails(){
                     <h4>{recipe.recipeName}</h4>
                     <div className={styles.ingredients}>
                         <p>Ingredients</p>
-                        {recipe.ingredients.map(x => {
-                            return (<p>{x.ingredient} : {x.quantity} Grams</p>)
+                        {recipe.ingredients?.map((x, index) => {
+                            return (<p key={index}>{x.ingredient} : {x.quantity} Grams</p>)
                         })}
                     </div>
                         <p className={styles.paragraph}>Category: <strong>{recipe.category}</strong></p>
